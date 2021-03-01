@@ -15,19 +15,24 @@
     <div class="container-fluid m-0">
         <div class="row border-bottom border-dark border-4">
             <div class="col-lg p-2 ml-3"><h1>Welcome!</h1></div>
-            <div class="col-lg p-2 mr-3"><p class="text-right"><a href="/loginpage" class="btn btn-success mt-2">Log in</a></p></div>
+            <div class="col-lg p-2 mr-3"><p class="text-right"><a href="/" class="btn btn-primary mt-2">Home</a></p></div>
         </div>
         <div class="row bg-info p-5 mb-0">
             <div class="col-lg p-2 mb-0">
-                <h1 class="text-center text-white fs-2">Our goal:</h1>
-                <h2 class="text-center text-white">Make learning accessible and fun for children of any age!</h2>
-                <p class="text-center"><a href="/create_account" class="btn btn-primary mt-3">Create an account for free!</a></p>
+                <h2 class="text-center text-white">Enter information below to log into your account!</h2>
             </div>
         </div>
-    </div>
-    <div class="container-fluid border mt-0 p-0 has-bg-img">
-        <img src="{% static 'images/home.jpg' %}" class="bg-img w-100" alt="kids running around a Camp">
-        <p>test</p>
+        <div class="col-sm">
+
+            <h1 class="mt-1 mb-3 text-center">Login</h1>
+            <form action='/login' method='post'>
+                {% csrf_token %}
+                Email:<input type='text' class="form-control" name='email'>
+                Password:<input type="password" class="form-control" name='password'>
+                <button type='submit' class="btn btn-success mt-3 mb-3">Login</button>
+            </form>
+        </div>
+
     </div>
 
 </body>

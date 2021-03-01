@@ -19,6 +19,20 @@ def success(request):
     
     return redirect ('/')
 
+def create_account(request):
+    if 'UserID' in request.session:
+        context = {
+            'thisUser': User.objects.get(id=request.session.get('UserID'))
+        }
+        return render(request, "success.html", context)
+    else:
+        return render (request, "create.html")
+
+def login_page(request):
+    if 'UserID' in request.session:
+        return redirect('/success')
+    else:
+        return render (request, "login.html")  
 
 
 ######################################################################################
@@ -62,12 +76,12 @@ def login(request):
     if existingUser is not None:
         if bcrypt.checkpw(request.POST['password'].encode(), existingUser.password.encode()):
             request.session['UserID'] = existingUser.id
-            return redirect('/dashboard')
+            return redirect('/success')
         else:
             print('password does not match')
     else:
         print('user does not exist')
-    return redirect('/')
+    return redirect('/did not log in')
 
 
 def log_out(request):
